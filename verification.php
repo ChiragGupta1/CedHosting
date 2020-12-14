@@ -101,7 +101,7 @@
       $_SESSION['otp']=$otp;
       $fields = array(
         "sender_id" => "FSTSMS",
-        "message" => "This is your One Time Password(OTP) for the verification on the CedHosting site : ".$otp,
+        "message" => "This is your One Time Password(OTP) by CHIRAG for the verification on the CedHosting site : ".$otp,
         "language" => "english",
         "route" => "p",
         "numbers" => "$mobile",
