@@ -2,13 +2,13 @@
     class Product {
         public $prod_name, $prod_parent_id;
 
-        function create_category ($con, $prod_name, $prod_parent_id, $prod_avail) {
-            $sql = "INSERT INTO `tbl_product`(`prod_parent_id`, `prod_name`, `link`, `prod_available`, `prod_launch_date`) VALUES ($prod_parent_id,'".$prod_name."','',$prod_avail,NOW())";
+        function create_category ($con, $prod_name, $prod_parent_id, $prod_avail, $link) {
+            $sql = "INSERT INTO `tbl_product`(`prod_parent_id`, `prod_name`, `html`, `prod_available`, `prod_launch_date`) VALUES ($prod_parent_id,'".$prod_name."','".$link."',$prod_avail,NOW())";
             $result = mysqli_query($con, $sql);
             return $result;
         }
-        function update_category ($con, $id, $prod_name, $prod_parent_id, $prod_avail) {
-            $sql = "UPDATE `tbl_product` SET `prod_parent_id`= $prod_parent_id,`prod_name`='".$prod_name."',`link`='',`prod_available`= $prod_avail WHERE `id` = $id";
+        function update_category ($con, $id, $prod_name, $prod_parent_id, $prod_avail, $link) {
+            $sql = "UPDATE `tbl_product` SET `prod_parent_id`= $prod_parent_id,`prod_name`='".$prod_name."',`html`='".$link."',`prod_available`= $prod_avail WHERE `id` = $id";
             $result = mysqli_query($con, $sql);
             return $result;
         }

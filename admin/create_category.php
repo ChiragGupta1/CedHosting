@@ -80,7 +80,7 @@
         </div>
         <div class="form-group">
             <label for="example-email-input" class="form-control-label">Link</label>
-            <input class="form-control" type="url" id="link" name="link">
+            <input class="form-control" type="text" id="link" name="link">
         </div>
         <div class="form-group">
         <label class="form-control-label">Product Availability</label><br>
@@ -128,14 +128,14 @@
                     if ($value['prod_available'] == 1) {
                         echo "<td>Yes</td>
                             <td>".$value['prod_launch_date']."</td>
-                            <td><a href='create_category.php?editid=".$value['id']."&prod_name=".$value['prod_name']."&parent=".$value['prod_parent_id']."&link=".$value['link']."&check=".$value['prod_available']."'><img style='width: 40%;' src='../images/pencil.png'></a></td>
+                            <td><a href='create_category.php?editid=".$value['id']."&prod_name=".$value['prod_name']."&parent=".$value['prod_parent_id']."&link=".$value['html']."&check=".$value['prod_available']."'><img style='width: 40%;' src='../images/pencil.png'></a></td>
                             <td><a onClick=\"javascript: return confirm('Are you sure?');\" href='create_category.php?deleteid=".$value['id']."'><img class='w-25' src='../images/remove.png'></a></td>
                         </tr>";
                     } else if ($value['prod_available'] == 0) {
                         echo "
                             <td>No</td>
                             <td>".$value['prod_launch_date']."</td>
-                            <td><a href='create_category.php?editid=".$value['id']."&prod_name=".$value['prod_name']."&parent=".$value['prod_parent_id']."&link=".$value['link']."&check=".$value['prod_available']."'><img style='width: 40%;' src='../images/pencil.png'></a></td>
+                            <td><a href='create_category.php?editid=".$value['id']."&prod_name=".$value['prod_name']."&parent=".$value['prod_parent_id']."&link=".$value['html']."&check=".$value['prod_available']."'><img style='width: 40%;' src='../images/pencil.png'></a></td>
                             <td><a onClick=\"javascript: return confirm('Are you sure?');\" href='create_category.php?deleteid=".$value['id']."'><img class='w-25' src='../images/remove.png'></a></td>
                         </tr>";
                     }
