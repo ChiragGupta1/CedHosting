@@ -45,7 +45,7 @@
 									<?php 
 										$show_category = $product->show_category($db->connect(), 1);
 										foreach ($show_category as $key => $value) {
-											echo "<li><a href='".$value['link']."'>".$value['prod_name']."</a></li>";
+											echo "<li><a href='".$value['html']."'>".$value['prod_name']."</a></li>";
 										}
 									?>
 									</ul>
