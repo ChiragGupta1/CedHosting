@@ -94,7 +94,7 @@
 							<div class="clearfix"></div>
 						</div>
 						<div class="copy-section">
-							<p>&copy; 2020 CedHosting. All rights reserved | Design by <a href="#">Harshit Singh</a></p>
+							<p>&copy; 2020 CedHosting. All rights reserved | Design by <a href="#">CedHosting</a></p>
 						</div>
 					</div>
 				</div>

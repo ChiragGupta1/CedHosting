@@ -90,7 +90,7 @@
                             <td>Yes</td>
                             <td>".$value['prod_launch_date']."</td>
                             <td><a href='add_product.php?editid=".$value['prod_id']."&prod_name=".$value['prod_name']."&parent=".$value['prod_parent_id']."&link=".$value['html']."&check=".$value['prod_available']."&desc=".$value['description']."&mon=".$value['mon_price']."&annual=".$value['annual_price']."&sku=".$value['sku']."'><img style='width: 40%;' src='../images/pencil.png'></a></td>
-                            <td><a onClick=\"javascript: return confirm('Are you sure?');\" href='view_products.php?deleteid=".$value['id']."'><img class='w-25' src='../images/remove.png'></a></td>
+                            <td><a onClick=\"javascript: return confirm('Are you sure?');\" href='view_products.php?deleteid=".$value['id']."'><img class='w-50' src='../images/remove.png'></a></td>
                         </tr>";
                     } else if ($value['prod_available'] == 0) {
                         echo "
