@@ -64,7 +64,7 @@ if(isset($_POST['add'])){
                         "Mailbox"=>$_POST['mail-box']);
     $description_encoded = json_encode($description);
 
-        $add_product = $product->add_product($db->connect(), $name, $prod_id, 1);
+        $add_product = $product->add_product($db->connect(), $name, $prod_id, 1, $link);
         $add_prod_description = $product->add_product_description($db->connect(), $add_product, $description_encoded, $monthly, $annually, $sku);
         if($add_prod_description){
             header("location: add_product.php?added=1");

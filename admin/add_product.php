@@ -57,7 +57,7 @@
         </div>
         <div class="form-group">
             <label for="example-text-input" class="form-control-label">Product Name*</label>
-            <input class="form-control" type="text" id="name" name="product-name" onfocusout="validate(this);" pattern="" required><small id="small-name" hidden></small>
+            <input class="form-control" type="text" id="name" name="product-name" onfocusout="validate(this);" pattern="^[a-zA-Z0-9#](?:[a-zA-Z0-9_-]*[a-zA-Z0-9])?$" required><small id="small-name" hidden></small>
             <input class="form-control" type="hidden" id="id" name="id" value="<?php echo $_GET['editid'];?>"> </div>
         <div class="form-group">
             <label for="example-email-input" class="form-control-label">Product URL</label>

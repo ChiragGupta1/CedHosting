@@ -28,8 +28,8 @@
             $result = mysqli_query($con, $sql);
             return $result;
         }
-        function add_product ($con, $prod_name, $prod_parent_id, $prod_avail) {
-            $sql = "INSERT INTO `tbl_product`(`prod_parent_id`, `prod_name`, `link`, `prod_available`, `prod_launch_date`) VALUES ($prod_parent_id,'".$prod_name."','',$prod_avail,NOW())";
+        function add_product ($con, $prod_name, $prod_parent_id, $prod_avail, $link) {
+            $sql = "INSERT INTO `tbl_product`(`prod_parent_id`, `prod_name`, `html`, `prod_available`, `prod_launch_date`) VALUES ($prod_parent_id,'".$prod_name."','".$link."',$prod_avail,NOW())";
             $result = mysqli_query($con, $sql);
             $row = mysqli_insert_id($con);
             return $row;
@@ -40,7 +40,7 @@
             return $result;
         }
         function show_products($con) {
-            $sql = "SELECT tbl_product_description.id, prod_id, description, mon_price, annual_price,sku, tbl_product.id, prod_parent_id, prod_name, link, prod_available, prod_launch_date FROM tbl_product_description INNER JOIN tbl_product ON tbl_product_description.prod_id = tbl_product.id";
+            $sql = "SELECT tbl_product_description.id, prod_id, description, mon_price, annual_price,sku, tbl_product.id, prod_parent_id, prod_name, html, prod_available, prod_launch_date FROM tbl_product_description INNER JOIN tbl_product ON tbl_product_description.prod_id = tbl_product.id";
             $result = mysqli_query($con, $sql);
             return $result;
         } 
