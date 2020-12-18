@@ -36,11 +36,9 @@
     }
 ?>
 <div class="w-100 mx-auto">
-    <table id="product-table" class="text-center table my-5" cellspacing="0" width="100%">
+    <table id="product-table" class="text-center table table-primary my-5" cellspacing="0" width="100%">
         <thead>
             <tr>
-            <th class="th-sm">Product ID
-            </th>
             <th class="th-sm">Product Name
             </th>
             <th class="th-sm">Parent Name
@@ -52,8 +50,6 @@
             <th class="th-sm">Annual Price
             </th>
             <th class="th-sm">SKU ID
-            </th>
-            <th class="th-sm">Link
             </th>
             <th class="th-sm">Available
             </th>
@@ -71,7 +67,6 @@
                 foreach ($show_products as $key => $value) {
                     $desc_decode = json_decode($value['description']);
                     echo "<tr id='".$value['prod_id']."'>
-                            <td>".$value['prod_id']."</td>
                             <td>".$value['prod_name']."</td>";
                     $fetch = $product->check_parent($db->connect(), $value['prod_parent_id']);
 
@@ -86,7 +81,6 @@
                             <td>".$value['mon_price']."</td>
                             <td>".$value['annual_price']."</td>
                             <td>".$value['sku']."</td>
-                            <td>".$value['html']."</td>
                             <td>Yes</td>
                             <td>".$value['prod_launch_date']."</td>
                             <td><a href='add_product.php?editid=".$value['prod_id']."&prod_name=".$value['prod_name']."&parent=".$value['prod_parent_id']."&link=".$value['html']."&check=".$value['prod_available']."&desc=".$value['description']."&mon=".$value['mon_price']."&annual=".$value['annual_price']."&sku=".$value['sku']."'><img style='width: 40%;' src='../images/pencil.png'></a></td>
@@ -102,7 +96,6 @@
                             <td>".$value['mon_price']."</td>
                             <td>".$value['annual_price']."</td>
                             <td>".$value['sku']."</td>
-                            <td>".$value['html']."</td>
                             <td>No</td>
                             <td>".$value['prod_launch_date']."</td>
                             <td><a href='add_product.php?editid=".$value['prod_id']."&prod_name=".$value['prod_name']."&parent=".$value['prod_parent_id']."&link=".$value['html']."&check=".$value['prod_available']."&desc=".$value['description']."&mon=".$value['mon_price']."&annual=".$value['annual_price']."&sku=".$value['sku']."'><img style='width: 40%;' src='../images/pencil.png'></a></td>

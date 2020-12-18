@@ -28,33 +28,41 @@
         $product = new Product();
         
         if(isset($_POST['create'])) {
+            
             $name = isset($_POST['product_name'])?$_POST['product_name']:'';
-            $parent_id = isset($_POST['prod_parent_id'])?$_POST['prod_parent_id']:'';
+            $parent_id = isset($_POST['prod-parent-id'])?$_POST['prod-parent-id']:'';
             $link = isset($_POST['link'])?$_POST['link']:'';
             $prod_avail = isset($_POST['check'])?1:0;
-            $add_category = $product->create_category($db->connect(), $name, $parent_id, $prod_avail, $link);
-
-            if($add_category) {
-                header("location: create_category.php?added=1");
-                
+            $cat_name = $product->check_category($db->connect(), $name); 
+            if($cat_name > 0) {
+                header("location: create_category.php?added=3");
             } else {
-                header("location: create_category.php?added=2");
-                
+                $add_category = $product->create_category($db->connect(), $name, $parent_id, $prod_avail);
+                if($add_category) {
+                    header("location: create_category.php?added=1");
+                } else {
+                    header("location: create_category.php?added=2");
+                }
             }
         }
         if(isset($_POST['edit-btn'])) {
             $id = isset($_POST['id'])?$_POST['id']:'';
             $name = isset($_POST['product_name'])?$_POST['product_name']:'';
-            $parent_id = isset($_POST['prod_parent_id'])?$_POST['prod_parent_id']:'';
+            $parent_id = isset($_POST['prod-parent-id'])?$_POST['prod-parent-id']:'';
             $link = isset($_POST['link'])?$_POST['link']:'';
             $prod_avail = isset($_POST['check'])?1:0;
-            $add_category = $product->update_category($db->connect(), $id, $name, $parent_id, $prod_avail, $link);
-            if($add_category) {
-                header("location: create_category.php?added=1");
-                
+            $cat_name = $product->check_category_for_edit($db->connect(), $name, $id); 
+            if($cat_name > 0) {
+                header("location: create_category.php?added=3");
             } else {
-                header("location: create_category.php?added=2");
-                
+                $add_category = $product->update_category($db->connect(), $id, $name, $parent_id, $prod_avail);
+                if($add_category) {
+                    header("location: create_category.php?added=1");
+                    
+                } else {
+                    header("location: create_category.php?added=2");
+                    
+                }
             }
         }
     ?>

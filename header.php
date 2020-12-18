@@ -23,7 +23,7 @@
 								<i class="icon-bar"></i>
 							</button>				  
 							<div class="navbar-brand">
-								<a href="index.php"><img style="width: 80%; margin-top: 0px; padding: 0px;" src="images/logo.png" alt=""></a>
+								<a href="index.php"><img style="width: 50%; margin-top: 0px; padding: 0px;" src="images/logo.png" alt=""></a>
 							</div>
 						</div>
 
@@ -45,7 +45,7 @@
 									<?php 
 										$show_category = $product->show_category($db->connect(), 1);
 										foreach ($show_category as $key => $value) {
-											echo "<li><a href='".$value['html']."'>".$value['prod_name']."</a></li>";
+											echo "<li><a href='catpage.php?id=".$value['id']."'>".$value['prod_name']."</a></li>";
 										}
 									?>
 									</ul>

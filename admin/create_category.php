@@ -14,6 +14,12 @@
                         $('#wrong').prop('hidden', false).slideUp(3000);
                     })
                 </script>";
+        } else if($added == 3) {
+            echo "<script>
+                    $(document).ready(function(){
+                        $('#wrong').text('Category already exists!').prop('hidden', false).slideUp(3000);
+                    })
+                </script>";
         }
     ?>
     <!-- Page Content -->
@@ -32,7 +38,7 @@
                 $(document).ready(function (){
                     $('#edit-btn').prop('hidden', false);
                     $('#create-btn').prop('hidden', true);
-                    $('#name').val('".$name."');
+                    $('#cat-name').val('".$name."');
                     $('#parent').val('".$parent."')
                     $('#link').val('".$link."')
                 })
@@ -68,22 +74,30 @@
         <strong>Something went wrong!</strong>
     </div>
     <div class="w-50 mx-auto my-5 px-5 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-        <form class="p-5" action="add_category.php" method="POST" >
-        <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Product Name</label>
-            <input class="form-control" type="text" id="name" name="product_name">
+        <form class="py-5" action="add_category.php" method="POST" >
+        <div class="form-group p-3 rounded" id="catname-div">
+            <label for="example-text-input" class="form-control-label">Category Name</label><label class="text-danger"> *</label>
+            <input class="form-control" type="text" id="cat-name" onfocusout="validate_cat_name();" name="product_name" required>
             <input class="form-control" type="hidden" id="id" name="id" value="<?php echo $editid;?>">
+            <small id="small-cat-name" hidden>Please enter in the Alphabetic/ Alpha+numeric/ Alpha+numeric with special character(only ".") format.</small>
         </div>
-        <div class="form-group">
-            <label for="example-search-input" class="form-control-label">Product Parent ID</label>
-            <input class="form-control" type="number" id="parent" name="prod_parent_id">
+        <div class="form-group p-3">
+            <label for="example-search-input" class="form-control-label">Category Parent</label>
+            <select name="prod-parent-id" id="parentid" class="form-control">
+                <?php
+                    $show_category = $product->show_category($db->connect(), 0);
+                    foreach($show_category as $key => $value) {
+                        echo "<option value='".$value['id']."'>".$value['prod_name']."</option>";
+                    }   
+                ?>
+            </select>
         </div>
-        <div class="form-group">
+        <div class="form-group p-3">
             <label for="example-email-input" class="form-control-label">Link</label>
-            <input class="form-control" type="text" id="link" name="link">
+            <input class="form-control" type="url" id="link" name="link">
         </div>
-        <div class="form-group">
-        <label class="form-control-label">Product Availability</label><br>
+        <div class="form-group p-3">
+        <label class="form-control-label">Category Availability</label><br>
         <label class="custom-toggle">
             <input type="checkbox" name="check" id="check">
             <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
@@ -96,11 +110,8 @@
     </form>
     </div>
     <div class="w-100 mx-auto">
-    <table id="category-table" class="text-center table" cellspacing="0" width="100%">
+    <table id="category-table" class="text-center table table-primary" cellspacing="0" width="100%">
         <thead>
-            <tr>
-            <th class="th-sm">Category ID
-            </th>
             <th class="th-sm">Category Name
             </th>
             <th class="th-sm">Parent Category
@@ -120,7 +131,6 @@
                 $show_category = $product->show_category($db->connect(), 1);
                 foreach ($show_category as $key => $value) {
                     echo "<tr id='".$value['id']."'>
-                            <td>".$value['id']."</td>
                             <td>".$value['prod_name']."</td>";
                     $fetch = $product->check_parent($db->connect(), $value['prod_parent_id']);
 
@@ -128,14 +138,14 @@
                     if ($value['prod_available'] == 1) {
                         echo "<td>Yes</td>
                             <td>".$value['prod_launch_date']."</td>
-                            <td><a href='create_category.php?editid=".$value['id']."&prod_name=".$value['prod_name']."&parent=".$value['prod_parent_id']."&link=".$value['html']."&check=".$value['prod_available']."'><img style='width: 40%;' src='../images/pencil.png'></a></td>
+                            <td><a href='create_category.php?editid=".$value['id']."&prod_name=".$value['prod_name']."&parent=".$value['prod_parent_id']."&check=".$value['prod_available']."'><img style='width: 40%;' src='../images/pencil.png'></a></td>
                             <td><a onClick=\"javascript: return confirm('Are you sure?');\" href='create_category.php?deleteid=".$value['id']."'><img class='w-25' src='../images/remove.png'></a></td>
                         </tr>";
                     } else if ($value['prod_available'] == 0) {
                         echo "
                             <td>No</td>
                             <td>".$value['prod_launch_date']."</td>
-                            <td><a href='create_category.php?editid=".$value['id']."&prod_name=".$value['prod_name']."&parent=".$value['prod_parent_id']."&link=".$value['html']."&check=".$value['prod_available']."'><img style='width: 40%;' src='../images/pencil.png'></a></td>
+                            <td><a href='create_category.php?editid=".$value['id']."&prod_name=".$value['prod_name']."&parent=".$value['prod_parent_id']."&check=".$value['prod_available']."'><img style='width: 40%;' src='../images/pencil.png'></a></td>
                             <td><a onClick=\"javascript: return confirm('Are you sure?');\" href='create_category.php?deleteid=".$value['id']."'><img class='w-25' src='../images/remove.png'></a></td>
                         </tr>";
                     }
@@ -155,3 +165,4 @@
             $('#category-table').DataTable();
         })
     </script>
+    <!-- pattern="^[A-z]+\-[\d]*(\.\d+)*$|^[A-z]+$" -->
